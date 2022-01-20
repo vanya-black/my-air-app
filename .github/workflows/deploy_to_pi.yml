@@ -8,11 +8,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.RASPBERRY_HOST }}
-        username: ${{ secrets.RASPBERRY_USERNAME }}
-        password: ${{ secrets.RASPBERRY_PASSWORD }}
-        port: ${{ secrets.RASPBERRY_PORT }}
-        script: raspberry/startup.sh
+    - uses: actions/checkout@v2
+    - uses: appleboy/ssh-action@master
+    with:
+      host: ${{ secrets.RASPBERRY_HOST }}
+      username: ${{ secrets.RASPBERRY_USERNAME }}
+      password: ${{ secrets.RASPBERRY_PASSWORD }}
+      port: ${{ secrets.RASPBERRY_PORT }}
+      script: raspberry/startup.sh
