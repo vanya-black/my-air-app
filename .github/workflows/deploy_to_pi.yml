@@ -17,4 +17,4 @@ jobs:
         port: ${{ secrets.RASPBERRY_PORT }}
         script: |
           git clone https://github.com/vanya-black/my-air-app.git
-          sh 
+          sh raspberry/startup.sh
