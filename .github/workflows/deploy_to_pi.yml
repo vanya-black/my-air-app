@@ -15,4 +15,6 @@ jobs:
         username: ${{ secrets.RASPBERRY_USERNAME }}
         password: ${{ secrets.RASPBERRY_PASSWORD }}
         port: ${{ secrets.RASPBERRY_PORT }}
-        script: ls
+        script: |
+          git clone https://github.com/vanya-black/my-air-app.git
+          sh 
