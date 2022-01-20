@@ -15,4 +15,4 @@ jobs:
         username: ${{ secrets.RASPBERRY_USERNAME }}
         password: ${{ secrets.RASPBERRY_PASSWORD }}
         port: ${{ secrets.RASPBERRY_PORT }}
-        script: sh raspberry/startup.sh
+        script: ls
