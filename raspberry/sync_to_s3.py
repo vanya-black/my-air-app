@@ -67,7 +67,7 @@ logging.info(f'Found {len(hours)} unsended hours')
 for row in rows:
     row['dt'] = datetime.fromisoformat(row['dt'])
 
-for hour in hours:
+for hour in hours[:-1]:
     data = [x for x in rows if x['dt'] > hour and x['dt'] < hour+timedelta(hours=1)]
     for d in data:
         del d['id']
