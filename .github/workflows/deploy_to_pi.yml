@@ -27,8 +27,8 @@ jobs:
           rm -r my-air-app
           git clone https://github.com/vanya-black/my-air-app.git
           echo "$S3_HOST"
-          sudo export S3_HOST=$S3_HOST
-          sudo export S3_ACCESS_KEY=$S3_ACCESS_KEY
-          sudo export S3_SECRET_KEY=$S3_SECRET_KEY
-          sudo export S3_BUCKET=$S3_BUCKET
+          export S3_HOST=$S3_HOST
+          export S3_ACCESS_KEY=$S3_ACCESS_KEY
+          export S3_SECRET_KEY=$S3_SECRET_KEY
+          export S3_BUCKET=$S3_BUCKET
           source ./my-air-app/raspberry/startup.sh
