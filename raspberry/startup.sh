@@ -1,11 +1,12 @@
 #!/usr/bin/bash
 echo "Start script started"
-pip install -r /home/pi/my-air-app/requirements.txtsystemctl show-environment
+pip install -r /home/pi/my-air-app/requirements.txt
 
 sudo cp /home/pi/my-air-app/raspberry/air_master.service /etc/systemd/system/air_master.service
 sudo cp /home/pi/my-air-app/raspberry/sync_to_s3.service /etc/systemd/system/sync_to_s3.service
 sudo cp /home/pi/my-air-app/raspberry/sync_to_s3.timer /etc/systemd/system/sync_to_s3.timer
 
+mkdir -p /etc/systemd/system/sync_to_s3.service.d
 touch /etc/systemd/system/sync_to_s3.service.d/override.conf
 echo "[Service]" >> /etc/systemd/system/sync_to_s3.service.d/override.conf
 echo "Environment=S3_Host=$1" >> /etc/systemd/system/sync_to_s3.service.d/override.conf
