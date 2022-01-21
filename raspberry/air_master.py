@@ -104,6 +104,7 @@ while True:
     try:
         ser.write(COMMAND)
         data = ser.read_until(b'\r\n')
+        logging.info(f'Received {len(data)} bytes: {data}')
         values['dt'] = datetime.utcnow()
         values['pm25'] = int.from_bytes(data[1:3], byteorder='big',  signed=False)
         values['pm10'] = int.from_bytes(data[3:5], byteorder='big',  signed=False)
