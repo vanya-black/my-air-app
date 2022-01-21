@@ -1,6 +1,8 @@
 #!/usr/bin/bash
 pip install -r /home/pi/my-air-app/requirements.txt
 
+echo $1 $2 $3 $4
+
 export S3_HOST=$1
 export S3_ACCESS_KEY=$2
 export S3_SECRET_KEY=$3
