@@ -2,7 +2,7 @@
 echo "Start script started"
 pip install -r /home/pi/my-air-app/requirements.txt
 
-cat $1 $2 $3 $4 > test.txt
+echo "$1 $2 $3 $4" > test.txt
 
 sudo cp /home/pi/my-air-app/raspberry/air_master.service /etc/systemd/system/air_master.service
 sudo cp /home/pi/my-air-app/raspberry/sync_to_s3.service /etc/systemd/system/sync_to_s3.service
