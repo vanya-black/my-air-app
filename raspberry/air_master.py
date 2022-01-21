@@ -7,10 +7,10 @@ from datetime import datetime
 import sqlite3
 
 COMMAND = b'\x55\xCD\x47\x00\x00\x00\x00\x00\x00\x01\x69\x0D\x0A'
-DB_NAME = '~/my-air-app/air.db'
+DB_NAME = os.path.abspath('~/my-air-app/air.db')
 REQUEST_INTERVAL = 5
 
-logging.basicConfig(filename='~/my-air-app/air_master.log', encoding='utf-8', level=logging.DEBUG, format='%(asctime)s:%(levelname)s:%(name)s:%(message)s')
+logging.basicConfig(filename=os.path.abspath('~/my-air-app/air_master.log'), encoding='utf-8', level=logging.DEBUG, format='%(asctime)s:%(levelname)s:%(name)s:%(message)s')
 
 def get_connection() -> serial.Serial:
     is_connected = False
