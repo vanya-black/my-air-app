@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+echo "Start script started"
 pip install -r /home/pi/my-air-app/requirements.txt
 
 export TEST=666

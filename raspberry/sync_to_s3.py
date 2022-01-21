@@ -23,7 +23,7 @@ client = boto3.client(
     aws_secret_access_key=S3_SECRET_KEY,
 )
 
-with open(Path(Path.home(), 'my-air.app', 'air.avsc'), "rb") as f:
+with open(Path(Path.home(), 'my-air-app', 'air.avsc'), "rb") as f:
     schema = parse_schema(json.loads(f.read()))
 
 
