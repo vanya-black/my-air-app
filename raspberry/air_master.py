@@ -11,7 +11,7 @@ COMMAND = b'\x55\xCD\x47\x00\x00\x00\x00\x00\x00\x01\x69\x0D\x0A'
 DB_NAME = Path(Path.home(), 'air.db')
 REQUEST_INTERVAL = 5
 
-logging.basicConfig(filename=Path(Path.home(), 'air_maste.log'), encoding='utf-8', level=logging.DEBUG, format='%(asctime)s:%(levelname)s:%(name)s:%(message)s')
+logging.basicConfig(filename=Path(Path.home(), 'air_master.log'), encoding='utf-8', level=logging.DEBUG, format='%(asctime)s:%(levelname)s:%(name)s:%(message)s')
 
 def get_connection() -> serial.Serial:
     is_connected = False

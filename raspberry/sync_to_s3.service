@@ -1,0 +1,14 @@
+[UNIT]
+Description=Sync air.db to s3 storage
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python sync_to_s3.py
+WorkingDirectory=/home/pi/my-air-app/raspberry/
+StandardOutput=inherit
+StandardError=inherit
+User=pi
+
+[Install]
+WantedBy=multi-user.target

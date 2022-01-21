@@ -1,0 +1,3 @@
+pyserial
+fastavro
+boto3

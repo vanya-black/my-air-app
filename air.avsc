@@ -1,0 +1,21 @@
+{
+    "type": "record",
+    "name": "air",
+    "fields": [
+        {"name": "dt", "type": {"type": "long", "logicalType": "timestamp-micros"}},
+        {"name": "pm25", "type": "int"},
+        {"name": "pm10", "type": "int"},
+        {"name": "hcho", "type": "float"},
+        {"name": "tvoc", "type": "float"},
+        {"name": "co2", "type": "int"},
+        {"name": "temp", "type": "float"},
+        {"name": "rh", "type": "float"},
+        {"name": "runnig_hours", "type": "int"},
+        {"name": "um_03_parts_num", "type": "int"},
+        {"name": "um_05_parts_num", "type": "int"},
+        {"name": "um_1_parts_num", "type": "int"},
+        {"name": "um_25_parts_num", "type": "int"},
+        {"name": "um_50_parts_num", "type": "int"},
+        {"name": "um_10_parts_num", "type": "int"}
+    ]
+}
