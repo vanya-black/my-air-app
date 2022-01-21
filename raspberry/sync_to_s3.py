@@ -62,12 +62,13 @@ with sqlite3.connect(DB_NAME) as conn:
     rows = cur.fetchall()
 
 hours = sorted(list(set([datetime.fromisoformat(x['dt']).replace(minute=0, second=0, microsecond=0) for x in rows])))
+hours.remove(datetime.utcnow().replace(minute=0, second=0, microsecond=0)) # delete curr hour
 logging.info(f'Found {len(hours)} unsended hours')
 
 for row in rows:
     row['dt'] = datetime.fromisoformat(row['dt'])
 
-for hour in hours[:-1]:
+for hour in hours:
     data = [x for x in rows if x['dt'] > hour and x['dt'] < hour+timedelta(hours=1)]
     for d in data:
         del d['id']
