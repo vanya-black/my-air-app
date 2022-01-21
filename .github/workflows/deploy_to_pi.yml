@@ -8,13 +8,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: appleboy/ssh-action@master
+    - name: Checkout repo
+      uses: actions/checkout@v2
+    - name: Deploy via ssh
       env:
         S3_HOST: ${{ secrets.S3_HOST }} 
         S3_ACCESS_KEY: ${{ secrets.S3_ACCESS_KEY }}
         S3_SECRET_KEY: ${{ secrets.S3_SECRET_KEY }}
         S3_BUCKET: ${{ secrets.S3_BUCKET }}
+      uses: appleboy/ssh-action@master
       with:
         envs: S3_HOST, S3_ACCESS_KEY, S3_SECRET_KEY, S3_BUCKET
         host: ${{ secrets.RASPBERRY_HOST }}
