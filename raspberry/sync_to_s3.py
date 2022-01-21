@@ -10,8 +10,8 @@ import sqlite3
 
 DB_NAME = Path(Path.home(), 'air.db')
 S3_HOST = os.environ.get('S3_HOST', 'https://storage.yandexcloud.net')
-S3_ACCESS_KEY = os.environ.get('S3_ACCESS_KEY', '2Od_FGfmZ0EoSHVyT6AS')
-S3_SECRET_KEY = os.environ.get('S3_SECRET_KEY', 'GvR_yHB4qsQNPyu7QCBYFfbX5dKnwHR5f9NgBlH-')
+S3_ACCESS_KEY = os.environ.get('S3_ACCESS_KEY', 'None')
+S3_SECRET_KEY = os.environ.get('S3_SECRET_KEY', 'None')
 S3_BUCKET = os.environ.get('S3_BUCKET', 'air-data')
 
 logging.basicConfig(filename=Path(Path.home(), 'sync.log'), encoding='utf-8', level=logging.INFO, format='%(asctime)s:%(levelname)s:%(name)s:%(message)s')
