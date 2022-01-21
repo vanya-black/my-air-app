@@ -26,6 +26,7 @@ jobs:
         script: |
           rm -r my-air-app
           git clone https://github.com/vanya-black/my-air-app.git
+          echo "$S3_HOST"
           export S3_HOST=$S3_HOST
           export S3_ACCESS_KEY=$S3_ACCESS_KEY
           export S3_SECRET_KEY=$S3_SECRET_KEY
