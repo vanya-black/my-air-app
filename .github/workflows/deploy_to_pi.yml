@@ -2,6 +2,8 @@ name: raspberry_pi_deploy
 on:
   push:
     branches: [ main ]
+    path:
+      - 'raspberry/**'
   workflow_dispatch:
 
 jobs:
