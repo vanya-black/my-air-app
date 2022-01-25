@@ -130,7 +130,7 @@ while True:
             ):
             store_data(values, conn)
         else:
-            logging.info(f'Received wrong data {data}')
+            logging.info(f'Received wrong data {values}')
         sleep(REQUEST_INTERVAL)
     except SerialException as ex:
         logging.warning(f'Cannot read data, try to connect. Exceptinon: {ex}')
