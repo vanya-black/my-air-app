@@ -105,23 +105,32 @@ while True:
     try:
         ser.write(COMMAND)
         data = ser.read_until(b'\r\n')
-        logging.info(f'Received {len(data)} bytes: {data}')
         values['dt'] = datetime.utcnow()
-        values['pm25'] = int.from_bytes(data[1:3], byteorder='big',  signed=False)
-        values['pm10'] = int.from_bytes(data[3:5], byteorder='big',  signed=False)
-        values['hcho'] = int.from_bytes(data[5:7], byteorder='big',  signed=False) / 1000
-        values['tvoc'] = int.from_bytes(data[7:9], byteorder='big',  signed=False) / 1000
-        values['co2'] = int.from_bytes(data[9:11], byteorder='big',  signed=False)
-        values['temp'] = int.from_bytes(data[11:13], byteorder='big',  signed=True) / 100
-        values['rh'] = int.from_bytes(data[13:15], byteorder='big',  signed=False) / 100
-        values['runnig_hours'] = int.from_bytes(data[17:19], byteorder='big',  signed=False)
-        values['um_03_parts_num'] = int.from_bytes(data[19:21], byteorder='big',  signed=False)
-        values['um_05_parts_num'] = int.from_bytes(data[21:23], byteorder='big',  signed=False)
-        values['um_1_parts_num'] = int.from_bytes(data[23:25], byteorder='big',  signed=False)
-        values['um_25_parts_num'] = int.from_bytes(data[25:27], byteorder='big',  signed=False)
-        values['um_50_parts_num'] = int.from_bytes(data[27:29], byteorder='big',  signed=False)
-        values['um_10_parts_num'] = int.from_bytes(data[29:31], byteorder='big',  signed=False)
-        store_data(values, conn)
+        values['pm25'] = int.from_bytes(data[1:3], byteorder='big', signed=False)
+        values['pm10'] = int.from_bytes(data[3:5], byteorder='big', signed=False)
+        values['hcho'] = int.from_bytes(data[5:7], byteorder='big', signed=False) / 1000
+        values['tvoc'] = int.from_bytes(data[7:9], byteorder='big', signed=False) / 1000
+        values['co2'] = int.from_bytes(data[9:11], byteorder='big', signed=False)
+        values['temp'] = int.from_bytes(data[11:13], byteorder='big', signed=True) / 100
+        values['rh'] = int.from_bytes(data[13:15], byteorder='big', signed=False) / 100
+        values['runnig_hours'] = int.from_bytes(data[17:19], byteorder='big', signed=False)
+        values['um_03_parts_num'] = int.from_bytes(data[19:21], byteorder='big', signed=False)
+        values['um_05_parts_num'] = int.from_bytes(data[21:23], byteorder='big', signed=False)
+        values['um_1_parts_num'] = int.from_bytes(data[23:25], byteorder='big', signed=False)
+        values['um_25_parts_num'] = int.from_bytes(data[25:27], byteorder='big', signed=False)
+        values['um_50_parts_num'] = int.from_bytes(data[27:29], byteorder='big', signed=False)
+        values['um_10_parts_num'] = int.from_bytes(data[29:31], byteorder='big', signed=False)
+        if not ((values['pm25'] > 0 or values['pm25'] < 999)
+            or (values['pm10'] > 0 or values['pm10'] < 999)
+            or (values['hcho'] > 0.0 or values['hcho'] < 3.0)
+            or (values['tvoc'] > 0.0 or values['tvoc'] < 1.5)
+            or (values['co2'] > 0 or values['co2'] < 5000)
+            or (values['temp'] > -25 or values['temp'] < 85)
+            or (values['rh'] > 0 or values['rh'] < 99)
+            ):
+            store_data(values, conn)
+        else:
+            logging.info(f'Received wrong dat {data}')
         sleep(REQUEST_INTERVAL)
     except SerialException as ex:
         logging.warning(f'Cannot read data, try to connect. Exceptinon: {ex}')
