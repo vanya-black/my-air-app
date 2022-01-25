@@ -120,7 +120,7 @@ while True:
         values['um_25_parts_num'] = int.from_bytes(data[25:27], byteorder='big', signed=False)
         values['um_50_parts_num'] = int.from_bytes(data[27:29], byteorder='big', signed=False)
         values['um_10_parts_num'] = int.from_bytes(data[29:31], byteorder='big', signed=False)
-        if not ((values['pm25'] > 0 or values['pm25'] < 999)
+        if ((values['pm25'] > 0 or values['pm25'] < 999)
             or (values['pm10'] > 0 or values['pm10'] < 999)
             or (values['hcho'] > 0.0 or values['hcho'] < 3.0)
             or (values['tvoc'] > 0.0 or values['tvoc'] < 1.5)
@@ -130,7 +130,7 @@ while True:
             ):
             store_data(values, conn)
         else:
-            logging.info(f'Received wrong dat {data}')
+            logging.info(f'Received wrong data {data}')
         sleep(REQUEST_INTERVAL)
     except SerialException as ex:
         logging.warning(f'Cannot read data, try to connect. Exceptinon: {ex}')
