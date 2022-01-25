@@ -123,7 +123,7 @@ while True:
         if ((values['pm25'] > 0 and values['pm25'] < 999)
             and (values['pm10'] > 0 and values['pm10'] < 999)
             and (values['hcho'] > 0.0 and values['hcho'] < 3.0)
-            and (values['tvoc'] > 0.0 and values['tvoc'] < 1.5)
+            and (values['tvoc'] > 0.0 and values['tvoc'] < 3.0)
             and (values['co2'] > 0 and values['co2'] < 5000)
             and (values['temp'] > -25 and values['temp'] < 85)
             and (values['rh'] > 0 and values['rh'] < 99)
