@@ -63,6 +63,8 @@ with sqlite3.connect(DB_NAME) as conn:
 
 hours = sorted(list(set([datetime.fromisoformat(x['dt']).replace(minute=0, second=0, microsecond=0) for x in rows])))
 hours.remove(datetime.utcnow().replace(minute=0, second=0, microsecond=0)) # delete curr hour
+logging.info(f'max timestamp found in s3: {max_ts}')
+logging.info(hours)
 logging.info(f'Found {len(hours)} unsended hours')
 
 for row in rows:
