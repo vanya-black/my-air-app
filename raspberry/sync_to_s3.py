@@ -29,7 +29,16 @@ with open(Path(Path.home(), 'my-air-app', 'air.avsc'), "rb") as f:
 
 def get_max_s3_timestamp() -> datetime:
     try:
-        keys = client.list_objects(Bucket=S3_BUCKET)['Contents']
+        response = client.list_objects_v2(Bucket=S3_BUCKET)
+        keys = response['Contents']
+        continuation_token = response['NextContinuationToken']
+        while continuation_token:
+            response = client.list_objects_v2(Bucket=S3_BUCKET, ContinuationToken=continuation_token)
+            keys.extend(response['Contents'])
+            try:
+                continuation_token = response['NextContinuationToken']
+            except KeyError:
+                continuation_token = None   
     except KeyError:
         return datetime(1970, 1, 1, 0)
 
@@ -63,8 +72,6 @@ with sqlite3.connect(DB_NAME) as conn:
 
 hours = sorted(list(set([datetime.fromisoformat(x['dt']).replace(minute=0, second=0, microsecond=0) for x in rows])))
 hours.remove(datetime.utcnow().replace(minute=0, second=0, microsecond=0)) # delete curr hour
-logging.info(f'max timestamp found in s3: {max_ts}')
-logging.info(hours)
 logging.info(f'Found {len(hours)} unsended hours')
 
 for row in rows:
